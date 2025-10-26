@@ -12,17 +12,17 @@ export default function ContentSections() {
   );
 }
 
-function Section({ id, eyebrow, title, children }) {
+function Section({ id, kicker, title, children }) {
   return (
     <section id={id} className="border-t border-white/10">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {eyebrow && (
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/70">
-            {eyebrow}
-          </div>
+      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+        {kicker && (
+          <p className="text-[10px] uppercase tracking-[0.25em] text-white/50">{kicker}</p>
         )}
         {title && (
-          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">{title}</h2>
+          <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+            {title}
+          </h2>
         )}
         <div className="mt-6 text-white/80">{children}</div>
       </div>
@@ -32,42 +32,30 @@ function Section({ id, eyebrow, title, children }) {
 
 function About() {
   return (
-    <Section
-      id="about"
-      eyebrow="App Overview"
-      title="Bring your AI assistant to every tab"
-    >
-      <div className="grid gap-8 md:grid-cols-2">
-        <div className="space-y-4 text-base leading-relaxed">
+    <Section id="about" kicker="Overview" title="A vintage-modern browser with an autonomous core">
+      <div className="grid gap-10 md:grid-cols-12">
+        <div className="md:col-span-7 space-y-5 text-base leading-relaxed">
           <p>
-            GlotBrowser merges a modern Chromium browser with a built-in AI agent that can see, understand,
-            and act on webpages — safely, locally, and instantly.
+            GlotBrowser combines a clean, editorial interface with an AI agent that can see, understand, and act on the web — privately and locally.
           </p>
-          <ul className="list-disc space-y-2 pl-5">
-            <li>Summarize any article or video right inside the tab.</li>
-            <li>Auto-fill forms, compare products, and plan tasks across sites.</li>
-            <li>Automate repetitive web actions using AI — all within your browser.</li>
-            <li>Chat, browse, and work seamlessly with your AI agent.</li>
-          </ul>
           <p>
-            Everything runs locally through a secure local backend, giving you AI autonomy without exposing your
-            browsing data.
+            Built for focus. Bold type, strict black and white palette, generous whitespace. The agent works behind the scenes so you can stay in flow.
           </p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="md:col-span-5">
+          <ul className="grid gap-3 text-sm">
             {[
-              { title: 'Local-first', desc: 'Runs on your device by default.' },
-              { title: 'Instant actions', desc: 'Click, scroll, and fill forms.' },
-              { title: 'Page-aware', desc: 'Understands what you see.' },
-              { title: 'Seamless chat', desc: 'Ask about any page.' },
-            ].map((item) => (
-              <div key={item.title} className="rounded-lg bg-black/30 p-4">
-                <div className="text-sm font-medium text-white">{item.title}</div>
-                <div className="text-sm text-white/70">{item.desc}</div>
-              </div>
+              ['Local-first', 'Runs on your device by default'],
+              ['Autonomous', 'Click, type, navigate via DevTools Protocol'],
+              ['Page-aware', 'Understands layout and content context'],
+              ['Focused', 'No clutter, just signal']
+            ].map(([title, desc]) => (
+              <li key={title} className="flex justify-between gap-4 border-b border-white/10 py-3">
+                <span className="text-white">{title}</span>
+                <span className="text-white/60">{desc}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
     </Section>
@@ -76,29 +64,25 @@ function About() {
 
 function HowItWorks() {
   return (
-    <Section
-      id="learn"
-      eyebrow="How It Works"
-      title="Local agent + DevTools Protocol for privacy-first autonomy"
-    >
-      <div className="grid gap-6 md:grid-cols-3">
+    <Section id="learn" kicker="Method" title="Local agent. Editorial interface.">
+      <div className="grid gap-8 md:grid-cols-3">
         {[
           {
-            title: 'Offline control',
-            desc: 'Automate safely with no data leaving your machine.',
+            t: 'Offline control',
+            d: 'Automate safely with no data leaving your machine.',
           },
           {
-            title: 'Local AI execution',
-            desc: 'Privacy by default. Connect your own keys if you want cloud models.',
+            t: 'Own your stack',
+            d: 'Use local models, or connect your own keys when needed.',
           },
           {
-            title: 'Plugin-like autonomy',
-            desc: 'Agent interacts via Chrome DevTools Protocol (CDP).',
+            t: 'Human-like actions',
+            d: 'Agent interacts via Chrome DevTools Protocol (CDP).',
           },
         ].map((item) => (
-          <div key={item.title} className="rounded-xl border border-white/10 bg-white/5 p-6">
-            <div className="text-base font-medium text-white">{item.title}</div>
-            <div className="mt-2 text-sm text-white/70">{item.desc}</div>
+          <div key={item.t} className="rounded-lg border border-white/10 p-6">
+            <div className="text-base font-medium text-white">{item.t}</div>
+            <div className="mt-2 text-sm text-white/70">{item.d}</div>
           </div>
         ))}
       </div>
@@ -108,31 +92,19 @@ function HowItWorks() {
 
 function CoreFeatures() {
   const features = [
-    {
-      title: 'Smart Understanding',
-      desc: 'Summarize, extract data, and translate content instantly.',
-    },
-    {
-      title: 'Autonomous Actions',
-      desc: 'Let the agent click, scroll, search, and fill forms with visual awareness.',
-    },
-    {
-      title: 'Task Automation',
-      desc: 'Create custom AI Routines for research, scraping, email sorting, and more.',
-    },
-    {
-      title: 'Contextual Chat',
-      desc: 'Ask questions about any page — get relevant, page-aware answers.',
-    },
+    ['Smart Understanding', 'Summarize, extract data, translate on the fly.'],
+    ['Autonomous Actions', 'Click, scroll, and complete forms with visual awareness.'],
+    ['Task Routines', 'Create reusable flows for research and operations.'],
+    ['Contextual Chat', 'Ask about any page and get page-aware answers.'],
   ];
 
   return (
-    <Section id="features" eyebrow="Core Features" title="What your AI browser can do">
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {features.map((f) => (
-          <div key={f.title} className="rounded-xl border border-white/10 bg-white/5 p-6">
-            <div className="text-base font-medium text-white">{f.title}</div>
-            <div className="mt-2 text-sm text-white/70">{f.desc}</div>
+    <Section id="features" kicker="Capabilities" title="What the agent can do">
+      <div className="grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map(([t, d]) => (
+          <div key={t} className="bg-black p-6">
+            <div className="text-base font-medium text-white">{t}</div>
+            <div className="mt-2 text-sm text-white/70">{d}</div>
           </div>
         ))}
       </div>
@@ -142,22 +114,15 @@ function CoreFeatures() {
 
 function Developers() {
   return (
-    <Section
-      id="developers"
-      eyebrow="For Developers & Power Users"
-      title="Built on Chromium + FastAPI. Extend with your own tools."
-    >
-      <div className="grid gap-6 md:grid-cols-2">
+    <Section id="developers" kicker="For Developers" title="Extend with your own tools">
+      <div className="grid gap-8 md:grid-cols-2">
         <div className="space-y-3 text-sm leading-relaxed text-white/80">
-          <ul className="list-disc space-y-2 pl-5">
-            <li>Supports OpenAI, Gemini, Claude, or your custom local model via API.</li>
-            <li>Local API to drive automation like a human: click, type, navigate.</li>
-            <li>CLI and developer console for testing workflows.</li>
-            <li>Extendable through local Python APIs and the GlotAgent runtime.</li>
-          </ul>
+          <p>Bring your own models (OpenAI, Gemini, Claude) or point to a local endpoint.</p>
+          <p>Automate like a human through a simple local API: click, type, navigate.</p>
+          <p>Script routines, test flows, and keep everything on your machine.</p>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-sm text-white/70">
-{`# Example: trigger a routine via local API\nPOST http://localhost:11400/routines/run\n{\n  \'name\': \'product_research\',\n  \'inputs\': { \'query\': \'best noise-cancelling headphones\' }\n}`}
+        <div className="rounded-lg border border-white/10 bg-black p-6 text-xs text-white/70">
+{`# Example: trigger a routine via local API\nPOST http://localhost:11400/routines/run\n{\n  "name": "product_research",\n  "inputs": { "query": "best noise-cancelling headphones" }\n}`}
         </div>
       </div>
     </Section>
@@ -166,75 +131,46 @@ function Developers() {
 
 function Pricing() {
   const tiers = [
-    {
-      name: 'Free',
-      desc: 'Core browser with chat assistant',
-      price: '$0',
-    },
-    {
-      name: 'Pro',
-      desc: 'Agent automation, multiple model keys',
-      price: '$9 / month',
-      highlighted: true,
-    },
-    {
-      name: 'Ultra',
-      desc: 'Developer mode, full API + multi-agent system',
-      price: '$19 / month',
-    },
+    ['Free', 'Core browser + chat assistant', '$0'],
+    ['Pro', 'Agent automation + multiple model keys', '$9 / mo'],
+    ['Ultra', 'Developer mode + full API', '$19 / mo'],
   ];
 
   return (
-    <Section id="pricing" eyebrow="Pricing" title="Simple, transparent plans">
+    <Section id="pricing" kicker="Pricing" title="Simple, transparent plans">
       <div className="grid gap-6 md:grid-cols-3">
-        {tiers.map((t) => (
-          <div
-            key={t.name}
-            className={`rounded-2xl border border-white/10 p-6 ${
-              t.highlighted ? 'bg-white text-black' : 'bg-white/5 text-white'
-            }`}
-          >
-            <div className="text-lg font-semibold">{t.name}</div>
-            <div className={`mt-2 text-sm ${t.highlighted ? 'text-black/70' : 'text-white/70'}`}>{t.desc}</div>
-            <div className="mt-6 text-2xl font-bold">{t.price}</div>
+        {tiers.map(([name, desc, price], i) => (
+          <div key={name} className={`rounded-xl border p-6 ${i === 1 ? 'border-white bg-white text-black' : 'border-white/20 bg-black text-white'}`}>
+            <div className="text-lg font-semibold">{name}</div>
+            <div className={`mt-2 text-sm ${i === 1 ? 'text-black/70' : 'text-white/70'}`}>{desc}</div>
+            <div className="mt-6 text-2xl font-bold">{price}</div>
             <a
               href="#download"
-              className={`mt-6 inline-flex rounded-md px-4 py-2 text-sm font-medium ${
-                t.highlighted
-                  ? 'bg-black text-white hover:bg-black/90'
-                  : 'bg-white text-black hover:bg-white/90'
-              }`}
+              className={`mt-6 inline-flex rounded-full border px-4 py-2 text-sm font-medium ${i === 1 ? 'border-black text-black hover:bg-black hover:text-white' : 'border-white text-white hover:bg-white hover:text-black'}`}
             >
               Get Started
             </a>
           </div>
         ))}
       </div>
-      <p className="mt-4 text-xs text-white/60">
-        All plans include local execution and full privacy controls.
-      </p>
+      <p className="mt-4 text-xs text-white/60">All plans include local execution and privacy controls.</p>
     </Section>
   );
 }
 
 function Download() {
   return (
-    <Section id="download" eyebrow="Download" title="Download GlotBrowser for Windows">
+    <Section id="download" kicker="Download" title="Get GlotBrowser for Windows">
       <div className="grid items-center gap-6 md:grid-cols-3">
-        <div className="md:col-span-2">
-          <p className="text-sm text-white/80">
-            Version 1.0 — AI Browser with Local Agent. macOS and Linux versions coming soon.
-          </p>
+        <div className="md:col-span-2 text-sm text-white/80">
+          Version 1.0 — editorial shell with local AI agent. macOS and Linux coming soon.
         </div>
         <div className="md:col-span-1">
           <a
             href="#"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition hover:bg-white/90"
+            className="inline-flex w-full items-center justify-center rounded-full border border-white px-4 py-2 text-sm font-medium text-white transition hover:bg-white hover:text-black"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-              <path d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Download for Windows (64-bit)
+            Download for Windows (64‑bit)
           </a>
         </div>
       </div>
@@ -244,40 +180,19 @@ function Download() {
 
 function FAQ() {
   const qas = [
-    {
-      q: 'What is GlotBrowser?',
-      a:
-        'GlotBrowser is a next-generation AI browser that integrates an autonomous agent directly into Chromium. It can understand, summarize, and perform actions on web pages — all locally.',
-    },
-    {
-      q: 'Is my data private?',
-      a:
-        'Yes. GlotBrowser runs a local backend on your device. No browsing data is sent to external servers unless you connect your own API key.',
-    },
-    {
-      q: 'Does GlotBrowser work offline?',
-      a:
-        'Yes, most features — including automation, summarization, and chat history — work offline. Only online AI model calls require internet.',
-    },
-    {
-      q: 'Which AI models does it support?',
-      a:
-        'Supports OpenAI GPT models, Google Gemini, Claude, and any custom local model via API endpoint configuration.',
-    },
-    {
-      q: 'How is it different from other browsers?',
-      a:
-        'Unlike traditional browsers or AI plugins, GlotBrowser has a built-in AI agent that can directly interact with the page DOM via the DevTools Protocol.',
-    },
+    ['What is GlotBrowser?', 'An AI-native browser that understands and acts on web pages, locally.'],
+    ['Is my data private?', 'Yes. The backend runs on your device; nothing leaves unless you connect your own keys.'],
+    ['Does it work offline?', 'Most features do. Only cloud model calls require internet.'],
+    ['Which models are supported?', 'OpenAI, Gemini, Claude, and any local model via API.'],
   ];
 
   return (
-    <Section id="faq" eyebrow="FAQ" title="Answers to common questions">
+    <Section id="faq" kicker="FAQ" title="Answers, concise">
       <div className="grid gap-6 md:grid-cols-2">
-        {qas.map((item) => (
-          <div key={item.q} className="rounded-xl border border-white/10 bg-white/5 p-6">
-            <div className="text-base font-medium text-white">{item.q}</div>
-            <div className="mt-2 text-sm text-white/70">{item.a}</div>
+        {qas.map(([q, a]) => (
+          <div key={q} className="rounded-lg border border-white/10 p-6">
+            <div className="text-base font-medium text-white">{q}</div>
+            <div className="mt-2 text-sm text-white/70">{a}</div>
           </div>
         ))}
       </div>

@@ -4,7 +4,7 @@ const navItems = [
   { href: '#about', label: 'About' },
   { href: '#features', label: 'Features' },
   { href: '#learn', label: 'Learn' },
-  { href: '#developers', label: 'For Developers' },
+  { href: '#developers', label: 'Developers' },
   { href: '#pricing', label: 'Pricing' },
   { href: '#download', label: 'Download' },
 ];
@@ -13,20 +13,19 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/60 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black/70 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-tr from-fuchsia-500 to-indigo-400" />
-            <span className="font-semibold tracking-tight text-white">GlotBrowser</span>
+          <a href="#" className="font-semibold tracking-tight text-white">
+            GLOTBROWSER
           </a>
 
-          <nav className="hidden gap-8 md:flex">
+          <nav className="hidden items-center gap-8 md:flex">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-white/80 transition-colors hover:text-white"
+                className="text-sm text-white/70 transition-colors hover:text-white"
               >
                 {item.label}
               </a>
@@ -36,7 +35,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <a
               href="#download"
-              className="rounded-md bg-white px-4 py-2 text-sm font-medium text-black shadow-sm transition hover:bg-white/90"
+              className="rounded-full border border-white px-4 py-2 text-sm font-medium text-white transition hover:bg-white hover:text-black"
             >
               Download
             </a>
@@ -66,7 +65,7 @@ export default function Navbar() {
 
         {open && (
           <div className="pb-4 md:hidden">
-            <nav className="grid gap-2">
+            <nav className="grid gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.href}
